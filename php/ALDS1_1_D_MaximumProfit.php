@@ -6,27 +6,23 @@
 $n = (int)rtrim(fgets(STDIN));
 
 $array = array();
-$maximum_number = -99999999999;
+$maximum_number = null;
+$min = null;
 for ($i = 0; $i < $n; $i++) {
     $in = (int)rtrim(fgets(STDIN));
+    if (!is_null($min)) {
+        $diff = $in - $min;
+        $min = $in < $min ? $in : $min;
 
-    $array[] = $in;
-    $num = getMaximumProfit($array);
-    $maximum_number = $num >  $maximum_number ? $num : $maximum_number;
-    // printf("maximum_number=$maximum_number" . PHP_EOL);
+        if ($maximum_number === null) {
+            $maximum_number = $diff;
+        } else {
+            $maximum_number =  $diff > $maximum_number ? $diff : $maximum_number;
+        }
+        // printf("maximum_number=$maximum_number" . PHP_EOL);
+    } else {
+        $min = $in;
+    }
 }
-
 // Print the number of Maximum Profit.
 print($maximum_number . PHP_EOL);
-
-// Get Maximum Profit.
-function getMaximumProfit($array)
-{
-    $end = array_pop($array);
-    $result = -99999999999;
-    foreach (array_reverse($array) as $val) {
-        $result = ($end - $val) > $result ? ($end - $val) : $result;
-        // printf("$end - $val , result = $result "  . PHP_EOL);
-    }
-    return $result;
-}
