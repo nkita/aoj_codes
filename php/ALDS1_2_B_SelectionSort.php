@@ -9,16 +9,18 @@ $A = explode(" ", rtrim(fgets(STDIN)));
 $i = 0;
 $count = 0;
 while ($i < $N) {
-    for ($j = 0; $j < $N - $i - 1; $j++) {
-        // print("j=" . $j . " array =" . implode(" ", $A) . " compare=(" . $A[$j] . ")(" . $A[$j + 1] . ")" . PHP_EOL);
-
-        if ($A[$j] > $A[$j + 1]) {
-            $tmp = $A[$j];
-
-            $A[$j] = $A[$j + 1];
-            $A[$j + 1] = $tmp;
-            $count++;
+    $minj = $i;
+    for ($j = $i; $j < $N - 1; $j++) {
+        // print("j:" . $j . " array:[" . implode(" ", $A) . "] compare:\$A[" . ($minj) . "](" . $A[$minj] . ")>\$A[" . ($j + 1) . "](" . $A[$j + 1] . ") minj=(" . $minj . ")" . PHP_EOL);
+        if ($A[$minj] > $A[$j + 1]) {
+            $minj = $j + 1;
         }
+    }
+    if ($minj !== $i) {
+        $tmp = $A[$i];
+        $A[$i] = $A[$minj];
+        $A[$minj] = $tmp;
+        $count++;
     }
     $i++;
 }
