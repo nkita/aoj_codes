@@ -9,11 +9,11 @@ $C = explode(" ", rtrim(fgets(STDIN)));
 
 $result = BubbleSort($C, $N);
 print(implode(" ", $result) . PHP_EOL);
-print(checkStable($result) . PHP_EOL);
+print(checkStable($result, $C, $N) . PHP_EOL);
 
 $result = SelectionSort($C, $N);
 print(implode(" ", $result) . PHP_EOL);
-print(checkStable($result) . PHP_EOL);
+print(checkStable($result, $C, $N) . PHP_EOL);
 
 
 // Bubble Sort Funtction.
@@ -53,7 +53,21 @@ function SelectionSort($C, $N)
     return $C;
 }
 
-function checkStable()
+function checkStable($result, $C, $N)
 {
+    $cards = array();
+    foreach ($C as $val) {
+        $cards[substr($val, 1, 1)] = $val;
+    }
+
+    $scards = array();
+    foreach ($result as $val) {
+        $scards[substr($val, 1, 1)] = $val;
+    }
+
+    foreach ($cards as $key => $val){
+        if($cards[$key] !== $scards[$key])
+        return "Not stable";
+    }
     return "Stable";
 }
