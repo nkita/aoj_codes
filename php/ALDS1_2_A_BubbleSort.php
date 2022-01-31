@@ -15,7 +15,7 @@ while ($N > 1) {
 
             $A[$j] = $A[$j - 1];
             $A[$j - 1] = $tmp;
-            // print("after =" . implode(" ", $A) . PHP_EOL);
+            // print(" after=" . implode(" ", $A) . PHP_EOL);
             $count++;
         }
     }
