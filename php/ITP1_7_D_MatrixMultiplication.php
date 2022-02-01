@@ -17,7 +17,19 @@ for ($i = 0; $i < $n; $i++) {
 $matrixB = array();
 for ($i = 0; $i < $m; $i++) {
     $row = explode(" ", rtrim(fgets(STDIN)));
-    foreach($row as $key => $val){
+    foreach ($row as $key => $val) {
         $matrixB[$key][$i] = $val;
     }
+}
+
+foreach ($matrixA as $row) {
+    $result = array();
+    foreach ($matrixB as $line) {
+        $sum = 0;
+        for ($i = 0; $i < $m; $i++) {
+            $sum += $row[$i] * $line[$i];
+        }
+        $result[] = $sum;
+    }
+    print(implode(" ", $result) . PHP_EOL);
 }
