@@ -4,9 +4,7 @@
 // Sum of Numbers
 // Get Args.
 $result = array();
-foreach (range('a', 'z') as $char) {
-    $result[$char] = 0;
-}
+foreach (range('a', 'z') as $char) $result[$char] = 0;
 
 while (true) {
     $str =  rtrim(fgets(STDIN));
