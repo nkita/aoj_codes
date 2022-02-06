@@ -10,39 +10,17 @@ $hPoint = 0;
 
 for ($i = 0; $i < $N; $i++) {
     $line = explode(" ", rtrim(fgets(STDIN)));
-    $taro = str_split($line[0]);
-    $hana = str_split($line[1]);
-    $stringCount = (count($taro) > count($hana)) ? count($hana) : count($taro);
-    if ($taro == $hana) {
-        $tPoint += 1;
-        $hPoint += 1;
+    $taro = $line[0];
+    $hana = $line[1];
+
+    if ($taro > $hana) {
+        $tPoint += 3;
+    } elseif ($taro < $hana) {
+        $hPoint += 3;
     } else {
-        $breakFlg = false;
-        for ($j = 0; $j < $stringCount; $j++) {
-            foreach (range('a', 'z') as $char) {
-                if ($char == $taro[$j] && $char == $hana[$j]) {
-                    continue;
-                } else if ($char == $taro[$j]) {
-                    $tPoint += 3;
-                    $breakFlg = true;
-                    break;
-                } elseif ($char == $hana[$j]) {
-                    $hPoint += 3;
-                    $breakFlg = true;
-                    break;
-                }
-            }
-            if ($breakFlg) break;
-        }
-        if (!$breakFlg) {
-            if (count($taro) < count($hana)) {
-                $tPoint += 3;
-            } else {
-                $hPoint += 3;
-            }
-        }
+        $tPoint++;
+        $hPoint++;
     }
-    // printf("%s %s" . PHP_EOL, $hPoint, $tPoint);
 }
 
-printf("%s %s" . PHP_EOL, $hPoint, $tPoint);
+printf("%s %s" . PHP_EOL, $tPoint, $hPoint);
