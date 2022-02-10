@@ -1,7 +1,7 @@
 <?php
 // https://onlinejudge.u-aizu.ac.jp/problems/ITP1_10_B
 
-// Distance
+// Triangle
 // Get Args.
 
 $P = explode(" ", rtrim(fgets(STDIN)));

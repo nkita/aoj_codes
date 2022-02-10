@@ -1,7 +1,7 @@
 <?php
 // https://onlinejudge.u-aizu.ac.jp/problems/ITP1_10_C
 
-// Distance
+// Standard Deviation
 // Get Args.
 while (true) {
     $n = rtrim(fgets(STDIN));
