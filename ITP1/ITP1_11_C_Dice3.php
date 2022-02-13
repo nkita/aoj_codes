@@ -16,8 +16,6 @@ $arr2 = explode(' ', rtrim(fgets(STDIN)));
 $dice = new Dice($arr);
 $dice2 = new Dice($arr2);
 
-$dice2->numberToTop($dice->getVal('top'));
-$dice2->numberToFront($dice->getVal('front'));
 if ($dice->sameCheck($dice2->toArray())) {
     print('Yes' . PHP_EOL);
 } else {
@@ -62,12 +60,15 @@ class Dice
 
     function sameCheck($target)
     {
-        for ($i = 0; $i < 4; $i++) {
-            for ($j = 0; $j < 4; $j++) {
-                if ($target == $this->toArray()) return true;
-                $this->moveOrder("R");
+        for ($h = 0; $h < 4; $h++) {
+            for ($i = 0; $i < 4; $i++) {
+                for ($j = 0; $j < 4; $j++) {
+                    if ($target == $this->toArray()) return true;
+                    $this->moveOrder("R");
+                }
+                $this->moveOrder("N");
             }
-            $this->moveOrder("N");
+            $this->moveOrder("W");
         }
         return false;
     }
