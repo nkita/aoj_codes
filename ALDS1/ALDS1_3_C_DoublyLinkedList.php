@@ -5,27 +5,31 @@ ini_set("memory_limit", "-1");
 // Get Args.
 $n =  rtrim(fgets(STDIN));
 $amount = 0;
-$result = array();
+$result = new SplDoublyLinkedList();
+
 for ($i = 0; $i < $n; $i++) {
     $command =  explode(" ", rtrim(fgets(STDIN)));
     switch ($command[0]) {
         case 'insert':
-            array_unshift($result, $command[1]);
+            $result->unshift($command[1]);
             break;
         case 'delete':
-            foreach ($result as $key => $val) {
-                if ($command[1] == $val) {
-                    unset($result[$key]);
-                    break;
-                }
+            for ($result->rewind(); $result->valid(); $result->next()) {
+                if ($result->current() == $command[1]) {
+                    $result->offsetUnset($result->key());
+                };
             }
             break;
         case 'deleteFirst':
-            array_shift($result);
+            $result->shift();
             break;
         case 'deleteLast':
-            array_pop($result);
+            $result->pop();
             break;
     }
 }
-print(implode(' ', $result) . PHP_EOL);
+
+for ($result->rewind(); $result->valid(); $result->next()) {
+    $out[] = $result->current();
+}
+print(implode(" ", $out).PHP_EOL);
