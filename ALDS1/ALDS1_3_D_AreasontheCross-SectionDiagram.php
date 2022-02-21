@@ -14,7 +14,7 @@ foreach ($l as $char) {
             if ($isUp) {
                 // 頂点を取得
                 $tops[] = $deep;
-                // 過去の頂点をさかのぼって
+                // 過去の頂点をさかのぼって取得
                 foreach ($tops as $key => $top) {
                     if ($key != 0 && $top < $deep) {
                         unset($tops[$key]);
