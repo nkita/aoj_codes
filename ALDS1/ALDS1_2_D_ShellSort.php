@@ -5,7 +5,7 @@ ini_set("memory_limit", "-1");
 // Get Args.
 $n = rtrim(fgets(STDIN));
 for ($i = 0; $i < $n; $i++) {
-    $A[] =  rtrim(fgets(STDIN));
+    $A[] =  (int)rtrim(fgets(STDIN));
 }
 $cnt = 0;
 $g = $n;
