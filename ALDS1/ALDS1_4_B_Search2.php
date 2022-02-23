@@ -7,23 +7,31 @@ $n = (int)rtrim(fgets(STDIN));
 $S = explode(" ", rtrim(fgets(STDIN)));
 $q = (int)rtrim(fgets(STDIN));
 $T = explode(" ", rtrim(fgets(STDIN)));
-$count = 0;
 
-$index = $n;
-$mod = $count = 0;
+$count = 0;
 foreach ($T as $t) {
-    // 中間インデックス取得
-    while ($index > 0) {
-        $mod = $index % 2;
-        $index = floor($index / 2);
+    // print("\$t = $t \n");
+    $end = $n - 1;
+    $start = 0;
+    $add = floor(($end - $start) / 2);
+    while ($add > 0) {
+        $mod = ($end - $start) % 2;
+        $add = floor(($end - $start) / 2);
+        $index = $start + $add;
+        // printf("start-end=[$start-$end] [%s,..,%s] S[$index]=%s mod $mod \n", $S[$start], $S[$end], $S[$index]);
         if ($S[$index] == $t) {
             $count++;
             break;
         }
         if ($S[$index] > $t) {
+            $end = $index;
+        } else {
+            $start = $index;
         }
-        if ($mod == 0) {
-            print("mod");
+        if ($add <= 0 && $mod == 1) {
+            if ($S[$index + 1] == $t) $count++;
+            break;
         }
     }
 }
+print("$count\n");
